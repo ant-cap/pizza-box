@@ -2,7 +2,7 @@
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
 background_mode = 1
-background_color = Color(0.593217, 0.262559, 0.302233, 1)
+background_color = Color(0.328446, 0.422765, 0.144513, 1)
 
 [node name="Main" type="Node3D"]
 
