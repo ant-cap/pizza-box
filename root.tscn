@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck1vxv5toilfs"]
+[gd_scene load_steps=3 format=3 uid="uid://ck1vxv5toilfs"]
 
 [ext_resource type="AudioStream" uid="uid://kl2nfhvg1fo6" path="res://audio/Club Penguin - Pizza Parlor Theme (Charlie's Here) [FULL High Quality].mp3" id="1_pq8q7"]
+
+[sub_resource type="Environment" id="Environment_pq8q7"]
+background_mode = 1
+background_color = Color(0.576909, 0.698943, 0.349276, 1)
 
 [node name="Root" type="Node3D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_pq8q7")
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pq8q7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
