@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkgvb6nw4248d"]
+
+[ext_resource type="Script" uid="uid://riqq6mhxkdvw" path="res://scenes/lukescene.gd" id="1_pnpst"]
+[ext_resource type="Script" uid="uid://b43xv6nxpgmk1" path="res://scenes/quarter.gd" id="2_sd7kf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sd7kf"]
+albedo_color = Color(0.485703, 0.485704, 0.485703, 1)
+metallic = 0.94
+roughness = 0.45
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hnoli"]
+material = SubResource("StandardMaterial3D_sd7kf")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0iv2e"]
+height = 0.039917
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy0fl"]
+albedo_color = Color(0.259203, 0.217158, 0.136962, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n3eg1"]
+material = SubResource("StandardMaterial3D_hy0fl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ojrj"]
+size = Vector3(52.7122, 0.510864, 52.5579)
+
+[node name="Lukescene" type="Node3D"]
+transform = Transform3D(1.01939, 0, 0, 0, 1.01939, 0, 0, 0, 1.01939, 0, 0, 0)
+script = ExtResource("1_pnpst")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.361, 0, 0, 0, -5.94912e-08, 1.361, 0, -1.361, -5.94912e-08, 0, 154.595, 0)
+light_color = Color(0.743694, 0.75602, 0.697718, 1)
+light_energy = 7.333
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.980983, 0, 0, 0, 0.899108, 0.392343, 0, -0.392343, 0.899108, 2.7878, 5.27699, 9.81293)
+fov = 70.8
+
+[node name="Quarter" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69816, 2.33698, 7.18553)
+script = ExtResource("2_sd7kf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Quarter"]
+transform = Transform3D(1, 0, 0, 0, 0.0189116, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_hnoli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quarter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00543213, 0)
+shape = SubResource("CylinderShape3D_0iv2e")
+
+[node name="Ground" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(26.2798, 0, 0, 0, 1.00126, 0, 0, 0, 26.2798, 0, 0, 0)
+mesh = SubResource("PlaneMesh_n3eg1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0840149, -0.244568, -0.0194092)
+shape = SubResource("BoxShape3D_4ojrj")
+
+[connection signal="mouse_entered" from="Ground" to="." method="_on_ground_mouse_entered"]
+[connection signal="mouse_exited" from="Ground" to="." method="_on_ground_mouse_exited"]
