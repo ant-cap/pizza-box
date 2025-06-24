@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bgtdx1c8vhiup"]
+
+[node name="Gameui" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.331
+offset_bottom = 11.68
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(640, 125)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="CurrentPlayerTurn" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 65.0
+offset_bottom = 23.0
+text = "{}'s Turn"
