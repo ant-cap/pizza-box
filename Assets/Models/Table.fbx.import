@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b43ykj117p316"
-path="res://.godot/imported/PizzaBox.fbx-86c14caecc129c24fd4a73d80ff4ec69.scn"
+uid="uid://d0f8g7cinvqdf"
+path="res://.godot/imported/Table.fbx-dc205f36cf38795013b2f34c720ca794.scn"
 
 [deps]
 
-source_file="res://Assets/Models/PizzaBox.fbx"
-dest_files=["res://.godot/imported/PizzaBox.fbx-86c14caecc129c24fd4a73d80ff4ec69.scn"]
+source_file="res://Assets/Models/Table.fbx"
+dest_files=["res://.godot/imported/Table.fbx-dc205f36cf38795013b2f34c720ca794.scn"]
 
 [params]
 
