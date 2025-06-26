@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlyp37oopf5ew"]
+[gd_scene load_steps=3 format=3 uid="uid://dlyp37oopf5ew"]
 
 [ext_resource type="Script" uid="uid://bres12owqmpxl" path="res://scripts/player.gd" id="1_3vyb7"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_3vyb7")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3vyb7")

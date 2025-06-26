@@ -15,6 +15,12 @@ func _on_color_picker_button_picker_created() -> void:
 
 func setColor(color: Color) -> void:
 	colorButton.set_pick_color(color)
+	
+func getColor() -> Color:
+	return colorButton.color
 
 func setName(editName: String) -> void:
 	nameInput.text = editName
+	
+func getName() -> String:
+	return nameInput.text

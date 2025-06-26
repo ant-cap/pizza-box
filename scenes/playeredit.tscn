@@ -4,6 +4,11 @@
 
 [node name="PlayerEdit" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
+anchors_preset = -1
+anchor_right = 0.144
+anchor_bottom = 0.044
+offset_right = -184.32
+offset_bottom = -31.68
 script = ExtResource("1_4q20v")
 
 [node name="Control" type="Control" parent="."]

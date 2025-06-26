@@ -3,7 +3,7 @@ extends Control
 var edits: Array
 
 @export var defaultColors: Array[Color] = [
-	Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PURPLE, Color.YELLOW
+	Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PURPLE, Color.ORANGE
 ]
 
 signal menu_closed
@@ -38,7 +38,17 @@ func adjustPlayerEdits(numPlayers: int) -> void:
 
 func _on_play_button_pressed() -> void:
 	self.hide()
+		
+	var player_scene = preload("res://scenes/player.tscn")
+	var players: Array = []
+	for i in range(len(edits)):
+		var player = player_scene.instantiate()
+		player.alias = edits[i].getName()
+		player.color = edits[i].getColor()
+		players.append(player)
+		
 	emit_signal("menu_closed")
+
 
 func _on_minus_button_pressed() -> void:
 	emit_signal("decrement_players")

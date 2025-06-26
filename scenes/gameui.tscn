@@ -23,4 +23,6 @@ offset_bottom = 100.0
 layout_mode = 1
 offset_right = 65.0
 offset_bottom = 23.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
 text = "{}'s Turn"
