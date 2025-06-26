@@ -5,7 +5,8 @@ var players: Array
 var currentPlayer: int = 0
 
 @onready var menu = $UI/Menu
-@onready var numPlayersText: Label = $UI/Menu/PlayerInfo/NumPlayersLine/NumPlayers
+@onready var numPlayersText: Label = $UI/Menu/PlayerInfo/VBoxContainer/NumPlayersLine/NumPlayers
+@onready var gameui = $UI/Gameui
 
 func _ready() -> void:
 	menu.connect("menu_closed", Callable(self, "init_game"))
@@ -21,6 +22,8 @@ func init_game() -> void:
 		$Players.add_child(player)
 	#move_camera_to(Vector3(0, 1, -1), $Camera3D.rotation, 1.0)
 	
+	gameui.show()
+	gameui.setPlayerTurn(players[currentPlayer].name)
 	$UI/Gameui/Control/CurrentPlayerTurn.text = "%s's Turn" % players[currentPlayer].name
 	
 func dec_players() -> void:

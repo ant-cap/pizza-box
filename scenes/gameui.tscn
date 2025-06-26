@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bgtdx1c8vhiup"]
+[gd_scene load_steps=2 format=3 uid="uid://bgtdx1c8vhiup"]
+
+[ext_resource type="Script" uid="uid://je1v1mfay3by" path="res://scripts/gameui.gd" id="1_xbdlh"]
 
 [node name="Gameui" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(640, 125)
+script = ExtResource("1_xbdlh")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

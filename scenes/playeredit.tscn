@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://desnaon3faecd"]
+
+[ext_resource type="Script" uid="uid://cnhm3r5ylw7my" path="res://scripts/playeredit.gd" id="1_4q20v"]
+
+[node name="PlayerEdit" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+script = ExtResource("1_4q20v")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+flat = true
+expand_icon = true
+color = Color(1, 0, 0, 1)
+edit_alpha = false
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Player 1"
+caret_blink = true
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3

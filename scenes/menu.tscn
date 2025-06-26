@@ -66,24 +66,27 @@ offset_bottom = -131.2
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NumPlayersLine" type="HBoxContainer" parent="PlayerInfo"]
-custom_minimum_size = Vector2(55, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInfo"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 28.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Control" type="Control" parent="PlayerInfo/NumPlayersLine"]
+[node name="NumPlayersLine" type="HBoxContainer" parent="PlayerInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PlayerInfo/NumPlayersLine"]
+[node name="Label" type="Label" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Number of Players:"
 
-[node name="MinusButton" type="Button" parent="PlayerInfo/NumPlayersLine"]
+[node name="MinusButton" type="Button" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 4
@@ -94,12 +97,12 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="NumPlayers" type="Label" parent="PlayerInfo/NumPlayersLine"]
+[node name="NumPlayers" type="Label" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "2"
 
-[node name="PlusButton" type="Button" parent="PlayerInfo/NumPlayersLine"]
+[node name="PlusButton" type="Button" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -110,10 +113,41 @@ icon = ExtResource("3_mhnvy")
 flat = true
 expand_icon = true
 
-[node name="Control2" type="Control" parent="PlayerInfo/NumPlayersLine"]
+[node name="Control2" type="Control" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PlayerInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="PlayerData" type="HBoxContainer" parent="PlayerInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PlayerInfo/VBoxContainer/PlayerData"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PlayerInfo/VBoxContainer/PlayerData"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+flat = true
+expand_icon = true
+color = Color(1, 0, 0, 1)
+edit_alpha = false
+
+[node name="LineEdit" type="LineEdit" parent="PlayerInfo/VBoxContainer/PlayerData"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Player 1"
+caret_blink = true
+
+[node name="Control2" type="Control" parent="PlayerInfo/VBoxContainer/PlayerData"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="PlayerInfo/NumPlayersLine/MinusButton" to="." method="_on_minus_button_pressed"]
-[connection signal="pressed" from="PlayerInfo/NumPlayersLine/PlusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="PlayerInfo/VBoxContainer/NumPlayersLine/MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="PlayerInfo/VBoxContainer/NumPlayersLine/PlusButton" to="." method="_on_plus_button_pressed"]
