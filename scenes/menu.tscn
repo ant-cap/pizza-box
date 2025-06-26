@@ -1,49 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc6wvwf6gxwvv"]
+[gd_scene load_steps=4 format=3 uid="uid://dc6wvwf6gxwvv"]
 
 [ext_resource type="Script" uid="uid://bcf15asxfq5eu" path="res://scripts/menu.gd" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://cnaopyjots8f2" path="res://textures/minus.png" id="2_con2f"]
+[ext_resource type="Texture2D" uid="uid://cy7eem86ebpvp" path="res://textures/plus.png" id="3_mhnvy"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 36.0
+offset_right = -320.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.9, 0.9)
-pivot_offset = Vector2(640, 360)
+pivot_offset = Vector2(320, 324)
 script = ExtResource("1_yqeox")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(640, 360)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -172.5
-offset_top = 10.0
-offset_right = 172.5
-offset_bottom = 109.0
+offset_left = -153.5
+offset_top = 15.0
+offset_right = 153.5
+offset_bottom = 103.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 64
 text = "Pizza Box!"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.572988, 0.572988, 0.572988, 0.117647)
+color = Color(0.649766, 0.540934, 0.557451, 0.647059)
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
@@ -52,26 +48,72 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.5
-offset_top = -53.5
-offset_right = 70.5
-offset_bottom = 53.5
+offset_left = -40.0
+offset_top = 226.8
+offset_right = 40.0
+offset_bottom = 266.8
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
 
-[node name="NumPlayers" type="Label" parent="."]
+[node name="PlayerInfo" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -160.0
-offset_right = 20.0
-offset_bottom = -137.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 128.0
+offset_bottom = -131.2
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="NumPlayersLine" type="HBoxContainer" parent="PlayerInfo"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Control" type="Control" parent="PlayerInfo/NumPlayersLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PlayerInfo/NumPlayersLine"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Number of Players:"
+
+[node name="MinusButton" type="Button" parent="PlayerInfo/NumPlayersLine"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/icon_hover_color = Color(0.783523, 0.783523, 0.783523, 1)
+theme_override_colors/icon_pressed_color = Color(0.537176, 0.518432, 0.494655, 1)
+icon = ExtResource("2_con2f")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="NumPlayers" type="Label" parent="PlayerInfo/NumPlayersLine"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "2"
+
+[node name="PlusButton" type="Button" parent="PlayerInfo/NumPlayersLine"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/icon_hover_pressed_color = Color(0.784314, 0.784314, 0.784314, 1)
+theme_override_colors/icon_hover_color = Color(0.537176, 0.518432, 0.494655, 1)
+icon = ExtResource("3_mhnvy")
+flat = true
+expand_icon = true
+
+[node name="Control2" type="Control" parent="PlayerInfo/NumPlayersLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PlayerInfo/NumPlayersLine/MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="PlayerInfo/NumPlayersLine/PlusButton" to="." method="_on_plus_button_pressed"]

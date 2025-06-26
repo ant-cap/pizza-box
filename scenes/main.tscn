@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx4qu664d74sm"]
+[gd_scene load_steps=11 format=3 uid="uid://dx4qu664d74sm"]
 
 [ext_resource type="PackedScene" uid="uid://dc6wvwf6gxwvv" path="res://scenes/menu.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://ehk13hy1lqyu" path="res://textures/pizza.jpg" id="1_tbgi4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgtdx1c8vhiup" path="res://scenes/gameui.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://d3nyj2wutfrtm" path="res://scripts/manager.gd" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bdoglnmg1xir" path="res://scenes/house.tscn" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://saob3tpu0uwv" path="res://scripts/camera.gd" id="7_o6xl0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tefeu"]
 panorama = ExtResource("1_tbgi4")
@@ -22,7 +23,7 @@ ssao_radius = 3.86
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.258819, -0.258132, 0.930795, 0, 0.96363, 0.267238, -0.965926, -0.0691664, 0.249406, 0, 16, 0)
+transform = Transform3D(0.258819, -0.258132, 0.930796, 0, 0.96363, 0.267238, -0.965926, -0.0691664, 0.249406, 0, 16, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7dm0k")
@@ -36,6 +37,9 @@ autoplay = true
 [node name="Manager" type="Node" parent="."]
 script = ExtResource("3_sugp2")
 
+[node name="GameCamera" type="Camera3D" parent="Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 7.5)
+
 [node name="UI" type="CanvasLayer" parent="Manager"]
 
 [node name="Gameui" parent="Manager/UI" instance=ExtResource("3_jyhfs")]
@@ -43,7 +47,11 @@ script = ExtResource("3_sugp2")
 [node name="Menu" parent="Manager/UI" instance=ExtResource("1_o5qli")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera3D" type="Camera3D" parent="Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
 [node name="Players" type="Node" parent="Manager"]
+
+[node name="MenuCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 9)
+current = true
+script = ExtResource("7_o6xl0")
+distance = 6.5
+vertical_angle = 0.5

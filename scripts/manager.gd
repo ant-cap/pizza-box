@@ -4,9 +4,13 @@ extends Node
 var players: Array
 var currentPlayer: int = 0
 
+@onready var menu = $UI/Menu
+@onready var numPlayersText: Label = $UI/Menu/PlayerInfo/NumPlayersLine/NumPlayers
+
 func _ready() -> void:
-	$UI/Menu.connect("menu_closed", Callable(self, "init_game"))
-	$UI/Menu/NumPlayers.text = str(numPlayers)
+	menu.connect("menu_closed", Callable(self, "init_game"))
+	menu.connect("decrement_players", Callable(self, "dec_players"))
+	menu.connect("increment_players", Callable(self, "inc_players"))
 
 func init_game() -> void:
 	var player_scene = preload("res://scenes/player.tscn")
@@ -15,9 +19,21 @@ func init_game() -> void:
 		player.name = "Player %s" % i
 		players.append(player)
 		$Players.add_child(player)
-	move_camera_to(Vector3(0, 1, -1), $Camera3D.rotation, 1.0)
+	#move_camera_to(Vector3(0, 1, -1), $Camera3D.rotation, 1.0)
 	
 	$UI/Gameui/Control/CurrentPlayerTurn.text = "%s's Turn" % players[currentPlayer].name
+	
+func dec_players() -> void:
+	if numPlayers < 2:
+		return
+	numPlayers -= 1
+	numPlayersText.text = "%s" % str(numPlayers)
+	
+func inc_players() -> void:
+	if numPlayers > 3:
+		return
+	numPlayers += 1
+	numPlayersText.text = "%s" % str(numPlayers)
 
 # CAMERA SHIT
 func move_camera_to(pos: Vector3, rot: Vector3, duration: float):

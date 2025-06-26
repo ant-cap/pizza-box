@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdoglnmg1xir"]
+[gd_scene load_steps=16 format=3 uid="uid://bdoglnmg1xir"]
 
 [ext_resource type="PackedScene" uid="uid://d0f8g7cinvqdf" path="res://Assets/Models/Table.fbx" id="1_qtlar"]
 [ext_resource type="Texture2D" uid="uid://bgle2t1x3pafy" path="res://textures/white-brick-interior-wall-texture.jpg" id="1_rk7hg"]
 [ext_resource type="PackedScene" uid="uid://b43ykj117p316" path="res://Assets/Models/PizzaBox.fbx" id="2_rk7hg"]
+[ext_resource type="PackedScene" uid="uid://6ipfe8d668od" path="res://Assets/Models/Coin.fbx" id="4_se78b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_se78b"]
 size = Vector3(25, 0.1, 25)
@@ -111,3 +112,6 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wcu0q")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="LightString/LightHousing/Bulb"]
+
+[node name="Coin" parent="." instance=ExtResource("4_se78b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.363911, 4.08468, -0.0382588)
