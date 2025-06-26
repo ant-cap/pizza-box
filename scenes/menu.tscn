@@ -17,7 +17,15 @@ grow_vertical = 2
 pivot_offset = Vector2(320, 324)
 script = ExtResource("1_yqeox")
 
-[node name="Label" type="Label" parent="."]
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Main"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -30,7 +38,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Pizza Box!"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Main"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -40,7 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.649766, 0.540934, 0.557451, 0.647059)
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="Main"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
 
-[node name="PlayerInfo" type="Control" parent="."]
+[node name="PlayerInfo" type="Control" parent="Main"]
 layout_mode = 1
 anchor_top = 0.198
 anchor_right = 1.0
@@ -65,7 +73,7 @@ offset_bottom = -0.304016
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInfo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/PlayerInfo"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,19 +81,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NumPlayersLine" type="HBoxContainer" parent="PlayerInfo/VBoxContainer"]
+[node name="NumPlayersLine" type="HBoxContainer" parent="Main/PlayerInfo/VBoxContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="Control" type="Control" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="Label" type="Label" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Number of Players:"
 
-[node name="MinusButton" type="Button" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="MinusButton" type="Button" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 4
@@ -96,12 +104,12 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="NumPlayers" type="Label" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="NumPlayers" type="Label" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "2"
 
-[node name="PlusButton" type="Button" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="PlusButton" type="Button" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -112,14 +120,86 @@ icon = ExtResource("3_mhnvy")
 flat = true
 expand_icon = true
 
-[node name="Control2" type="Control" parent="PlayerInfo/VBoxContainer/NumPlayersLine"]
+[node name="Control2" type="Control" parent="Main/PlayerInfo/VBoxContainer/NumPlayersLine"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="PlayerInfo/VBoxContainer"]
+[node name="Control" type="Control" parent="Main/PlayerInfo/VBoxContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="PlayerInfo/VBoxContainer/NumPlayersLine/MinusButton" to="." method="_on_minus_button_pressed"]
-[connection signal="pressed" from="PlayerInfo/VBoxContainer/NumPlayersLine/PlusButton" to="." method="_on_plus_button_pressed"]
+[node name="Quit" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -162.0
+offset_right = 320.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(320, 162)
+
+[node name="ColorRect" type="ColorRect" parent="Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65098, 0.541176, 0.556863, 0.647059)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quit"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -156.5
+offset_right = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Quit/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Are you sure you want to quit the game?"
+
+[node name="Control" type="Control" parent="Quit/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Quit/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Quit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Yes" type="Button" parent="Quit/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "Yes"
+
+[node name="No" type="Button" parent="Quit/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "No
+"
+
+[node name="Control2" type="Control" parent="Quit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="Quit/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Main/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Main/PlayerInfo/VBoxContainer/NumPlayersLine/MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="Main/PlayerInfo/VBoxContainer/NumPlayersLine/PlusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="Quit/VBoxContainer/HBoxContainer/Yes" to="." method="_on_yes_pressed"]

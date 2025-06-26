@@ -9,12 +9,18 @@ var edits: Array
 signal menu_closed
 signal decrement_players
 signal increment_players
+signal quit_game
+
+@onready var playerInfoContainer: VBoxContainer = $Main/PlayerInfo/VBoxContainer
+
+func setNumPlayers(numPlayers: int) -> void:
+	$Main/PlayerInfo/VBoxContainer/NumPlayersLine/NumPlayers.text = "%s" % str(numPlayers)
 
 func initPlayerEdits(numPlayers: int) -> void:
 	var edit_scene = preload("res://scenes/playeredit.tscn")
 	for i in range(numPlayers):
 		var edit = edit_scene.instantiate()
-		$PlayerInfo/VBoxContainer.add_child(edit)
+		playerInfoContainer.add_child(edit)
 		edit.setColor(defaultColors[i])
 		edit.setName("Player %s" % str(i))
 		edits.append(edit)
@@ -31,13 +37,23 @@ func adjustPlayerEdits(numPlayers: int) -> void:
 		var edit_scene = preload("res://scenes/playeredit.tscn")
 		for i in range(prevNumPlayers, numPlayers):
 			var edit = edit_scene.instantiate()
-			$PlayerInfo/VBoxContainer.add_child(edit)
+			$Main/PlayerInfo/VBoxContainer.add_child(edit)
 			edit.setColor(defaultColors[i])
 			edit.setName("Player %s" % str(i))
 			edits.append(edit)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if $Main.visible:
+			get_tree().quit()
+		if $Quit.visible:
+			$Quit.hide()
+		else:
+			$Quit.show()
+
 func _on_play_button_pressed() -> void:
-	self.hide()
+	$Main.hide()
+	$Quit.hide()
 		
 	var player_scene = preload("res://scenes/player.tscn")
 	var players: Array = []
@@ -55,3 +71,9 @@ func _on_minus_button_pressed() -> void:
 
 func _on_plus_button_pressed() -> void:
 	emit_signal("increment_players")
+
+
+func _on_yes_pressed() -> void:
+	$Quit.hide()
+	$Main.show()
+	emit_signal("quit_game")
