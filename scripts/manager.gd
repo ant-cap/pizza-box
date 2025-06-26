@@ -12,6 +12,8 @@ func _ready() -> void:
 	menu.connect("menu_closed", Callable(self, "init_game"))
 	menu.connect("decrement_players", Callable(self, "dec_players"))
 	menu.connect("increment_players", Callable(self, "inc_players"))
+	
+	menu.initPlayerEdits(numPlayers)
 
 func init_game() -> void:
 	var player_scene = preload("res://scenes/player.tscn")
@@ -31,12 +33,15 @@ func dec_players() -> void:
 		return
 	numPlayers -= 1
 	numPlayersText.text = "%s" % str(numPlayers)
+	menu.adjustPlayerEdits(numPlayers)
 	
 func inc_players() -> void:
 	if numPlayers > 3:
 		return
 	numPlayers += 1
 	numPlayersText.text = "%s" % str(numPlayers)
+	menu.adjustPlayerEdits(numPlayers)
+
 
 # CAMERA SHIT
 func move_camera_to(pos: Vector3, rot: Vector3, duration: float):

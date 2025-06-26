@@ -28,3 +28,5 @@ caret_blink = true
 [node name="Control2" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="picker_created" from="ColorPickerButton" to="." method="_on_color_picker_button_picker_created"]
