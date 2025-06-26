@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cenqs3mvrudwr"]
+
+[ext_resource type="Script" uid="uid://by7nty8ntvgah" path="res://scenes/draw_board.gd" id="1_0g73r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g73r"]
+albedo_color = Color(0.65076, 0.456589, 0.278062, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3l1q"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_0g73r")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fhfe"]
+size = Vector2(718, 720)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0g73r"]
+radius = 7.07107
+
+[node name="DrawBoard" type="Node2D"]
+script = ExtResource("1_0g73r")
+
+[node name="Polys" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Lines" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D"]
+modulate = Color(0.644188, 0.55383, 0.487184, 1)
+position = Vector2(640, 360)
+scale = Vector2(720, 720)
+mesh = SubResource("BoxMesh_v3l1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(640, 361)
+shape = SubResource("RectangleShape2D_0fhfe")
+
+[node name="Mouse" type="StaticBody2D" parent="."]
+position = Vector2(583, 355)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
+z_index = 2
+shape = SubResource("CircleShape2D_0g73r")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
